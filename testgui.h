@@ -60,28 +60,36 @@ class testgui : public QMainWindow
 public:
 	testgui(QWidget *parent = 0);
 	~testgui();
-	shape_predictor sp; //ÈËÁ³¹Ø¼üµã¼ì²âÆ÷
-	anet_type net;  // ÈËÁ³Ê¶±ğÄ£ĞÍ
+	shape_predictor sp; //äººè„¸å…³é”®ç‚¹æ£€æµ‹å™¨
+	anet_type net;  // äººè„¸è¯†åˆ«æ¨¡å‹
 	std::vector<matrix<float, 0, 1>> candidates_descriptors;
+	std::vector<std::vector<matrix<float, 0, 1>>> candidates_descriptors_vec;
 	std::vector<string> candidates;
-	frontal_face_detector detector = get_frontal_face_detector(); // ÈËÁ³ÕıÁ³¼ì²âÆ÷
+	frontal_face_detector detector = get_frontal_face_detector(); // äººè„¸æ­£è„¸æ£€æµ‹å™¨
 	std::vector<matrix<rgb_pixel>> jitter_image(
 		const matrix<rgb_pixel>& img
 	);
 	Mat image1;
+	Mat image2;
+	Mat image3;
 	QImage show_image1;
 	QImage show_image2;
+	QImage show_image3;
 	QTimer clk;
 	int flag_1 = 0;
 	int flag_2 = 0;
+	int flag_3 = 0;
+	int flag_4 = 0;
 private:
 	Ui::testguiClass ui;
 private slots:
 	void start();
 	void process();
-	void flag1();//¿ªÊ¼°´Å¥
-	void flag2();//´¦Àí°´Å¥
-	void trainModel(QString file);
+	void flag1();//å¼€å§‹æŒ‰é’®
+	void flag2();//å¤„ç†æŒ‰é’®
+	void flag3();
+	void flag4();
+	void trainModel(QString filename);
 	cv::Rect Detect(cv::Mat im);
 //	int candidates_train(const char *facesFile, std::vector<matrix<float, 0, 1>>&candidates_descriptors, std::vector<string>&candidates);
 };
